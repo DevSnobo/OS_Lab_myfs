@@ -22,17 +22,17 @@
 struct Superblock {
 
     static const uint8_t BLOCKSIZE = BLOCK_SIZE;
-    static const uint8_t USABLE_BLOCKS = 61440;//30 MiB = 31457280 Byte / 512 Byte
+    static const uint8_t USABLE_BLOCKS = 61760;//30 MiB = 31457280 Byte / 512 Byte + Rest
     static const uint8_t SUPER_BLOCK_POS = 0;
-    static const uint8_t SUPER_BLOCK_SIZE = 1;//?
-    static const uint8_t DMAP_POS = 1;//?
-    static const uint8_t DMAP_SIZE = 15;//?
-    static const uint8_t FAT_POS = 16; //?
-    static const uint8_t FAT_SIZE = 0;//?
-    static const uint8_t ROOT_POS = 0;//?
-    static const uint8_t ROOT_SIZE = 0;//?
-    static const uint8_t DATA_POS = 0;//?
-    static const uint8_t DATA_SIZE = 0;//?
+    static const uint8_t SUPER_BLOCK_SIZE = 1;
+    static const uint8_t DMAP_POS = 1;
+    static const uint8_t DMAP_SIZE = 15;
+    static const uint8_t FAT_POS = 16;
+    static const uint8_t FAT_SIZE = 240;
+    static const uint8_t ROOT_POS = 256;
+    static const uint8_t ROOT_SIZE = 64;
+    static const uint8_t DATA_POS = 320;
+    static const uint8_t DATA_SIZE = 61440;//30 MiB = 31457280 Byte / 512 Byte
     uint8_t current_entries;
     uint8_t open_files;
 
