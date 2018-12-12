@@ -26,46 +26,45 @@ struct Superblock {
     static const uint8_t SUPER_BLOCK_POS = 0;
     static const uint8_t SUPER_BLOCK_SIZE = 1;//?
     static const uint8_t DMAP_POS = 1;//?
-    static const uint8_t DMAP_SIZE = 0;//?
-    static const uint8_t FAT_POS = 0; //?
+    static const uint8_t DMAP_SIZE = 15;//?
+    static const uint8_t FAT_POS = 16; //?
     static const uint8_t FAT_SIZE = 0;//?
     static const uint8_t ROOT_POS = 0;//?
     static const uint8_t ROOT_SIZE = 0;//?
     static const uint8_t DATA_POS = 0;//?
     static const uint8_t DATA_SIZE = 0;//?
-    uint8_t current_entries = 0;
-    uint8_t open_files = 0;
+    uint8_t current_entries;
+    uint8_t open_files;
 
 };
 
 struct DMap {
-    //2 Blöcke mit Zahlen von 0-511 bzw 1-512
-    short[] dmap;
-}
+    bool [61440] free_blocks; //fuer jeden Block einen Eintrag, 0 fuer frei, 1 fuer belegt
+};
 
 struct FAT {
-    short[512][2] fat;
-}
+    uint16_t [61440] fat_entries; //fuer jeden Block einen Eintrag
+};
 
-struct file { //stat struct nehmen?
+struct File { //stat struct nehmen?
     char *file_name;
-    short file_size;
-    char *uid;
-    char *gid;
-    short file_perm;
+    uint8_t file_size;
+    char *uid; // user id
+    char *gid; //group id
+    uint8_t file_perm;
 
 
-    /*struct times {
-        long atime;
-        long mtime;
-        long ctime;
-    }*/
+    struct times {
+        uint64_t atime;
+        uint64_t mtime;
+        uint64_t ctime;
+    };
 
-    short* file_start;
-}
+    uint16_t file_start;
+};
 
 struct root {
-    file* files[];
-}
+    File [64] file;
+};
 
 #endif /* myfs_structs_h */

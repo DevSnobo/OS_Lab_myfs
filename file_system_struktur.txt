@@ -1,0 +1,56 @@
+﻿Betriebssysteme File System Struktur
+
+Superblock:
+
+- Größe: 1 Block
+- enthält Anzahl der benutzbaren Blöcke (für Daten): 
+- enthält Größe des gesamten File Systems
+- enthält Blockpositionen (Start) von Superblock, Dmap, Fat, Root und Dateien
+- enthält Größe in Blöcken von Superblock, Dmap, Fat, Root und Dateien
+- enthält Anzahl der aktuell vorhandenen Dateien (maximal 64)
+- enthält Anzahl der aktuell geöffneten Dateien (maximal 64)
+
+Dmap:
+
+- Größe: 15 Blöcke
+- bool Array der Größe 61440
+
+Fat:
+
+(linkedList?)
+
+- Array; erste Blockposition der Datei wird im root-Verzeichnis gespeichert
+-Eintrag in der Fat ist immer der nächste Block, den Datei belegt
+-Wenn Datei zuende, steht 0 als Eintrag
+
+
+(rechnung evtl falsch?)
+- Blocknummer 2 Byte
+- 61440 * 2 byte = 122 880 byte
+- 122 880 / 512 = 240 Blöcke
+- 256 Adressen pro Blocknummer
+
+gesuchter Block = BlockNr / 256 (Adressen)
+
+position im block = (BlockNr % 256) * 2
+
+
+File (Eigenschaften):
+
+- enthält Dateinamen, Dateigröße, User-id, Group-id, Berechtigungen und versch. Zeitstempel
+- Größe pro Datei: 1 Block
+
+Root:
+
+- 64 Blöcke groß
+- Array mit Files
+
+
+
+
+
+
+
+
+
+
