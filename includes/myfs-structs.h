@@ -8,6 +8,7 @@
 
 #ifndef myfs_structs_h
 #define myfs_structs_h
+
 #include <cstdint>
 
 #define NAME_LENGTH 255
@@ -39,15 +40,15 @@ struct Superblock {
 };
 
 struct DMap {
-    bool [61440] free_blocks; //fuer jeden Block einen Eintrag, 0 fuer frei, 1 fuer belegt
+    bool free_blocks[61440]; //fuer jeden Block einen Eintrag, 0 fuer frei, 1 fuer belegt
 };
 
 struct FAT {
-    uint16_t [61440] fat_entries; //fuer jeden Block einen Eintrag
+    uint16_t fat_entries[61440]; //fuer jeden Block einen Eintrag
 };
 
 struct File { //stat struct nehmen?
-    char *file_name;
+    char file_name[NAME_LENGTH];
     uint8_t file_size;
     char *uid; // user id
     char *gid; //group id
@@ -64,7 +65,7 @@ struct File { //stat struct nehmen?
 };
 
 struct root {
-    File [64] file;
+    File file[NUM_DIR_ENTRIES];
 };
 
 #endif /* myfs_structs_h */
