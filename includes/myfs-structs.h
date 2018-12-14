@@ -49,20 +49,20 @@ struct Superblock {
     uint8_t root_pos = ROOT_POS;
     uint8_t root_size = ROOT_SIZE;
     uint8_t data_pos = DATA_POS;
-    uint8_t current_entries;
-    uint8_t open_files;
+    uint8_t current_entries = 0;
+    uint8_t open_files = 0;
 
 };
 
 struct DMap {
-    bool free_blocks[61440]; //fuer jeden Block einen Eintrag, 0 fuer frei, 1 fuer belegt
+    bool free_blocks[61440] = {false}; //fuer jeden Block einen Eintrag, 0 fuer frei, 1 fuer belegt
 };
 
 struct FAT {
-    uint16_t fat_entries[61440]; //fuer jeden Block einen Eintrag
+    uint16_t fat_entries[61440] = {0}; //fuer jeden Block einen Eintrag
 };
 
-struct File { //stat struct nehmen?
+struct File {
     char file_name[NAME_LENGTH];
     uint8_t file_size;
     uint8_t uid; // user id
