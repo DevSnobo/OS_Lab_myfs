@@ -50,10 +50,9 @@ struct FAT {
 struct File { //stat struct nehmen?
     char file_name[NAME_LENGTH];
     uint8_t file_size;
-    char *uid; // user id
-    char *gid; //group id
+    uint8_t uid; // user id
+    uint8_t gid; //group id
     uint8_t file_perm;
-
 
     struct times {
         uint64_t atime;
@@ -64,7 +63,7 @@ struct File { //stat struct nehmen?
     uint16_t file_start;
 };
 
-struct root {
+struct Root {
     File file[NUM_DIR_ENTRIES];
 };
 
