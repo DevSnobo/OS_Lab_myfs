@@ -37,6 +37,8 @@ MyFS::~MyFS() {
     
 }
 
+
+
 int MyFS::fuseGetattr(const char *path, struct stat *statbuf) {
     LOGM();
     
