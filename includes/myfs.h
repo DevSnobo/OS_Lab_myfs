@@ -22,13 +22,14 @@ private:
     
 public:
     static MyFS *Instance();
-    
-    Superblock superblock;
-    DMap dmap;
-    FAT fat;
-    Root root;
 
     // TODO: Add attributes of your file system here
+    BlockDevice *block_dev;
+    Superblock *superblock;
+    DMap  *dmap;
+    FAT *fat;
+    Root  *root;
+    uint8_t open_files_count;
     
     MyFS();
     ~MyFS();
@@ -74,6 +75,7 @@ public:
     void fuseDestroy();
     
     // TODO: Add methods of your file system here
+
     
 };
 
