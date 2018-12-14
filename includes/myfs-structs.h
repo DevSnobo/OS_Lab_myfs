@@ -41,7 +41,7 @@ struct Superblock {
     uint8_t super_block_pos = SUPER_BLOCK_POS;
     uint8_t super_block_size = SUPER_BLOCK_SIZE;
     uint8_t dmap_pos = DMAP_POS;
-    uint8_t dmap_size = DATA_SIZE;
+    uint8_t dmap_size = DMAP_SIZE;
     uint8_t fat_pos = FAT_POS;
     uint8_t fat_size = FAT_SIZE;
     uint8_t root_pos = ROOT_POS;
