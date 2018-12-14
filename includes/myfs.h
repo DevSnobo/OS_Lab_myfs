@@ -92,10 +92,10 @@ public:
         size_t blockCount = sizeof(T) / BLOCK_SIZE;
         size_t currentBlock = block;
         for (; currentBlock < block + blockCount; ++currentBlock) {
-            blockDevice.write(currentBlock, rawData + ((currentBlock - block) * BLOCK_SIZE));
+            block_dev.write(currentBlock, rawData + ((currentBlock - block) * BLOCK_SIZE));
         }
         memcpy(buffer, rawData + ((currentBlock - block) * BLOCK_SIZE), sizeof(T) % BLOCK_SIZE);
-        blockDevice.write(currentBlock, buffer);
+        block_dev.write(currentBlock, buffer);
     }
 
     /**
@@ -113,9 +113,9 @@ public:
         std::size_t blockCount = sizeof(T) / BLOCK_SIZE;
         std::size_t currentBlock = block;
         for (; currentBlock < block + blockCount; ++currentBlock) {
-            blockDevice.read(currentBlock, rawData + ((currentBlock - block) * BLOCK_SIZE));
+            block_dev.read(currentBlock, rawData + ((currentBlock - block) * BLOCK_SIZE));
         }
-        blockDevice.read(currentBlock, buffer);
+        block_dev.read(currentBlock, buffer);
         memcpy(rawData + ((currentBlock - block) * BLOCK_SIZE), buffer, sizeof(T) % BLOCK_SIZE);
     }
 

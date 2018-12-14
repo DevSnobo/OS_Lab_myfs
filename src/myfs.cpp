@@ -236,11 +236,11 @@ void* MyFS::fuseInit(struct fuse_conn_info *conn) {
         LOGF("Container file name: %s", ((MyFsInfo *) fuse_get_context()->private_data)->contFile);
         
         // TODO: Implement your initialization methods here!
-        this->block_dev->open(((MyFsInfo *) fuse_get_context()->private_data)->contFile); //Inhalt von private_data nach contFile
-        this->superblock->
-
-
-
+        this->block_dev.open(((MyFsInfo *) fuse_get_context()->private_data)->contFile); //Inhalt von private_data nach contFile
+        readDevice(this->superblock.super_block_pos, this->superblock);
+        readDevice(this->superblock.dmap_pos, this->dmap);
+        readDevice(this->superblock.fat_pos, this->fat);
+        readDevice(this->superblock.root_pos, this->root);
     }
     
     RETURN(0);
